@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.daimajia.swipe.SwipeLayout
+        android:id="@+id/swipe"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/margin_m"
+        android:background="@color/white"
+        android:layout_height="wrap_content">
+
+    <FrameLayout
+            android:id="@+id/delete"
+            android:layout_width="64dp"
+            android:layout_height="match_parent"
+            android:background="#d63031">
+
+        <ImageView android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center"
+                   android:src="@drawable/ic_delete_white_24dp"/>
+
+
+    </FrameLayout>
+
+    <LinearLayout
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:id="@+id/name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/text_size_l"
+                    android:textStyle="bold"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/black"
+                    android:layout_marginEnd="@dimen/margin_h"
+                    tools:text="CITROEN"/>
+
+            <TextView
+                    android:id="@+id/id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_l"
+                    android:textStyle="normal"
+                    android:textColor="@color/gray"
+                    tools:text="#1234567"/>
+
+        </LinearLayout>
+
+
+        <Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_m"/>
+
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:textSize="@dimen/text_size_l"
+                    android:textStyle="bold"
+                    android:textAllCaps="true"
+                    android:textColor="@color/gray"
+                    android:layout_marginEnd="@dimen/margin_h"
+                    android:text="@string/price"/>
+
+            <TextView
+                    android:id="@+id/price"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:textSize="@dimen/text_size_l"
+                    android:textStyle="normal"
+                    android:textColor="@android:color/black"
+                    android:layout_marginEnd="@dimen/margin_h"
+                    tools:text="55"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:textSize="@dimen/text_size_l"
+                    android:textStyle="bold"
+                    android:textAllCaps="true"
+                    android:textColor="@color/gray"
+                    android:layout_marginEnd="@dimen/margin_h"
+                    android:text="@string/comment"/>
+
+            <TextView
+                    android:id="@+id/comment"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:textSize="@dimen/text_size_l"
+                    android:textStyle="normal"
+                    android:textColor="@android:color/black"
+                    android:layout_marginEnd="@dimen/margin_h"
+                    tools:text="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout."/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</com.daimajia.swipe.SwipeLayout>
