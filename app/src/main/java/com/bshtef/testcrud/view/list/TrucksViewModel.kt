@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.bshtef.testcrud.data.api.ApiClient
 import com.bshtef.testcrud.data.repository.NetworkRepository
 import com.bshtef.testcrud.utils.mapList
+import com.bshtef.testcrud.utils.mapNetworkErrors
 import com.bshtef.testcrud.view.base.TruckDataToSimpleView
 import com.bshtef.testcrud.view.base.TruckSimpleView
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -17,7 +18,7 @@ class TrucksViewModel : ViewModel() {
     private val compositeDisposable = CompositeDisposable()
 
     var trucks = MutableLiveData<ArrayList<TruckSimpleView>>()
-    var message = MutableLiveData<String>()
+    var error = MutableLiveData<Throwable>()
     var action = MutableLiveData<Action>()
 
     fun getList() {
@@ -25,13 +26,17 @@ class TrucksViewModel : ViewModel() {
             networkRepository.getList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .mapNetworkErrors()
                 .mapList(TruckDataToSimpleView()::transform)
                 .subscribe(
                     { list ->
-                        trucks.postValue(ArrayList(list.filterNotNull().sortedByDescending { it.id.toInt() }))
+                        trucks.postValue(
+                            ArrayList(list
+                                .filterNotNull()
+                                .sortedByDescending { it.id.toInt() }))
                     },
                     { throwable ->
-                        message.postValue(throwable.message)
+                        error.postValue(throwable)
                     }
                 )
         )
@@ -42,13 +47,14 @@ class TrucksViewModel : ViewModel() {
             networkRepository.deleteTruck(truck.id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .mapNetworkErrors()
                 .subscribe(
                     {
                         trucks.value?.remove(truck)
                         trucks.value = trucks.value
                     },
                     { throwable ->
-                        message.postValue(throwable.message)
+                        error.postValue(throwable)
                     }
                 )
         )

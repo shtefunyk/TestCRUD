@@ -6,4 +6,8 @@
     <string name="name">Name</string>
     <string name="save">Save</string>
     <string name="edit_truck">Edit truck</string>
+    <string name="error_no_network">No network!</string>
+    <string name="error_server_inreachable">Server is unreachable!</string>
+    <string name="error_call_failed">Call failed!</string>
+    <string name="something_went_wrong">Something went wrong.</string>
 </resources>

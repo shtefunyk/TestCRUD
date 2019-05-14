@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.bshtef.testcrud.R
+import com.bshtef.testcrud.utils.getErrorMessage
 import com.bshtef.testcrud.utils.onTextChanged
 import com.bshtef.testcrud.utils.toGone
 import com.bshtef.testcrud.utils.toVisible
@@ -59,9 +60,9 @@ class DetailActivity : AppCompatActivity() {
             finish()
         })
 
-        viewModel.message.observe(this, Observer { message ->
+        viewModel.error.observe(this, Observer { error ->
             hideProgress()
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getErrorMessage(error), Toast.LENGTH_SHORT).show()
         })
     }
 

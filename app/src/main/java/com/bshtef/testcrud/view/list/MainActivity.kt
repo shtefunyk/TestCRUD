@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bshtef.testcrud.R
+import com.bshtef.testcrud.utils.getErrorMessage
 import com.bshtef.testcrud.view.base.TruckSimpleView
 import com.bshtef.testcrud.view.detail.DetailActivity
 import com.bshtef.testcrud.view.detail.DetailActivity.Companion.KEY_TRUCK
@@ -86,8 +87,8 @@ class MainActivity : AppCompatActivity() {
             swipeToRefresh.isRefreshing = false
         })
 
-        viewModel.message.observe(this, Observer { message ->
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        viewModel.error.observe(this, Observer { error ->
+            Toast.makeText(this, getErrorMessage(error), Toast.LENGTH_SHORT).show()
 
             swipeToRefresh.isRefreshing = false
         })
