@@ -1,11 +1,12 @@
-package com.bshtef.testcrud.view.base
+package com.bshtef.testcrud.view.list
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.bshtef.testcrud.data.api.ApiClient
-import com.bshtef.testcrud.data.model.Truck
 import com.bshtef.testcrud.data.repository.NetworkRepository
 import com.bshtef.testcrud.utils.mapList
+import com.bshtef.testcrud.view.base.TruckDataToSimpleView
+import com.bshtef.testcrud.view.base.TruckSimpleView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -17,6 +18,7 @@ class TrucksViewModel : ViewModel() {
 
     var trucks = MutableLiveData<ArrayList<TruckSimpleView>>()
     var message = MutableLiveData<String>()
+    var action = MutableLiveData<Action>()
 
     fun getList() {
         compositeDisposable.add(
@@ -55,6 +57,7 @@ class TrucksViewModel : ViewModel() {
     fun addTruckToList(newTruck: TruckSimpleView){
         trucks.value?.add(0, newTruck)
         trucks.value = trucks.value
+        action.postValue(Action.SHOW_LIST_AFTER_ADD)
     }
 
     fun clear(){

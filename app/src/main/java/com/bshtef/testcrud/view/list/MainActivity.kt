@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bshtef.testcrud.R
 import com.bshtef.testcrud.view.base.TruckSimpleView
-import com.bshtef.testcrud.view.base.TrucksViewModel
 import com.bshtef.testcrud.view.detail.DetailActivity
 import com.bshtef.testcrud.view.detail.DetailActivity.Companion.KEY_TRUCK
 import kotlinx.android.synthetic.main.activity_main.*
@@ -91,6 +90,12 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
             swipeToRefresh.isRefreshing = false
+        })
+
+        viewModel.action.observe(this, Observer { action ->
+            if (action == Action.SHOW_LIST_AFTER_ADD){
+                recyclerView.scrollToPosition(0)
+            }
         })
     }
 
