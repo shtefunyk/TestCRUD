@@ -102,9 +102,9 @@ class DetailActivity : AppCompatActivity() {
             val comment = comment.text.toString()
 
             if (editMode) {
-                viewModel.editTruck(truck?.id!!, name, price, comment)
+                viewModel.editTruck(this, truck?.id!!, name, price, comment)
             } else {
-                viewModel.createTruck(name, price, comment)
+                viewModel.createTruck(this, name, price, comment)
             }
         }
     }

@@ -1,9 +1,12 @@
 package com.bshtef.testcrud.view.list
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.bshtef.testcrud.data.api.ApiClient
 import com.bshtef.testcrud.data.repository.NetworkRepository
+import com.bshtef.testcrud.utils.NoNetworkException
+import com.bshtef.testcrud.utils.isNetworkAvailable
 import com.bshtef.testcrud.utils.mapList
 import com.bshtef.testcrud.utils.mapNetworkErrors
 import com.bshtef.testcrud.view.base.TruckDataToSimpleView
@@ -21,7 +24,12 @@ class TrucksViewModel : ViewModel() {
     var error = MutableLiveData<Throwable>()
     var action = MutableLiveData<Action>()
 
-    fun getList() {
+    fun getList(context: Context) {
+        if (!context.isNetworkAvailable()){
+            error.postValue(NoNetworkException(Throwable()))
+            return
+        }
+
         compositeDisposable.add(
             networkRepository.getList()
                 .subscribeOn(Schedulers.io())
@@ -42,7 +50,12 @@ class TrucksViewModel : ViewModel() {
         )
     }
 
-    fun removeTruck(truck: TruckSimpleView){
+    fun removeTruck(context: Context, truck: TruckSimpleView){
+        if (!context.isNetworkAvailable()){
+            error.postValue(NoNetworkException(Throwable()))
+            return
+        }
+
         compositeDisposable.add(
             networkRepository.deleteTruck(truck.id)
                 .subscribeOn(Schedulers.io())

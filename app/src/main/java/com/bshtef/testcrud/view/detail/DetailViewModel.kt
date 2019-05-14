@@ -1,17 +1,19 @@
 package com.bshtef.testcrud.view.detail
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.bshtef.testcrud.data.api.ApiClient
 import com.bshtef.testcrud.data.model.Truck
 import com.bshtef.testcrud.data.repository.NetworkRepository
+import com.bshtef.testcrud.utils.NoNetworkException
+import com.bshtef.testcrud.utils.isNetworkAvailable
 import com.bshtef.testcrud.utils.mapNetworkErrors
 import com.bshtef.testcrud.view.base.TruckDataToSimpleView
 import com.bshtef.testcrud.view.base.TruckSimpleView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import java.lang.Error
 
 class DetailViewModel: ViewModel()  {
 
@@ -21,7 +23,12 @@ class DetailViewModel: ViewModel()  {
     var truck = MutableLiveData<TruckSimpleView>()
     var error = MutableLiveData<Throwable>()
 
-    fun createTruck(name: String, price: String, comment: String){
+    fun createTruck(context: Context, name: String, price: String, comment: String){
+        if (!context.isNetworkAvailable()){
+            error.postValue(NoNetworkException(Throwable()))
+            return
+        }
+
         compositeDisposable.add(
             networkRepository.createTruck(Truck("", name, price, comment))
                 .subscribeOn(Schedulers.io())
@@ -40,7 +47,12 @@ class DetailViewModel: ViewModel()  {
 
     }
 
-    fun editTruck(id: String, name: String, price: String, comment: String){
+    fun editTruck(context: Context, id: String, name: String, price: String, comment: String){
+        if (!context.isNetworkAvailable()){
+            error.postValue(NoNetworkException(Throwable()))
+            return
+        }
+
         compositeDisposable.add(
             networkRepository.editTruck(id, Truck("", name, price, comment))
                 .subscribeOn(Schedulers.io())

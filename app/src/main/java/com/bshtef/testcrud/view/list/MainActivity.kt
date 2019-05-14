@@ -2,9 +2,9 @@ package com.bshtef.testcrud.view.list
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
             viewModel.addTruckToList(data?.getSerializableExtra(DetailActivity.KEY_TRUCK) as TruckSimpleView)
         }
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_EDIT){
-            viewModel.getList()
+            viewModel.getList(this)
         }
     }
 
@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                 startActivityForResult(intent, REQUEST_CODE_EDIT)
             }
             override fun onRemoveClick(truck: TruckSimpleView) {
-                viewModel.removeTruck(truck)
+                viewModel.removeTruck(this@MainActivity, truck)
             }
         })
         recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupSwipeLayout(){
         swipeToRefresh.setOnRefreshListener {
-            viewModel.getList()
+            viewModel.getList(this)
         }
     }
 
@@ -79,10 +79,10 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this).get(TrucksViewModel::class.java)
 
         swipeToRefresh.isRefreshing = true
-        viewModel.getList()
+        viewModel.getList(this)
 
         viewModel.trucks.observe(this, Observer { list ->
-            adapter.submitList(list.toMutableList())
+            adapter.submitList(list?.toMutableList())
 
             swipeToRefresh.isRefreshing = false
         })

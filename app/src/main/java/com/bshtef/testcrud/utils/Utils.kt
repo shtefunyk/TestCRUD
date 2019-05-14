@@ -1,6 +1,7 @@
 package com.bshtef.testcrud.utils
 
-import java.lang.Exception
+import android.content.Context
+import android.net.ConnectivityManager
 
 fun validatePrice(price: String): String{
     try {
@@ -9,4 +10,10 @@ fun validatePrice(price: String): String{
         return "undefined price"
     }
     return price
+}
+
+fun Context.isNetworkAvailable(): Boolean {
+    val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
+    val activeNetworkInfo = connectivityManager!!.activeNetworkInfo
+    return activeNetworkInfo != null && activeNetworkInfo.isConnected
 }
