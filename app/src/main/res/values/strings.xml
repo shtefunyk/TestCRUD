@@ -2,4 +2,8 @@
     <string name="app_name">Trucks list</string>
     <string name="price">Price</string>
     <string name="comment">Comment</string>
+    <string name="title_activity_detail">Create new truck</string>
+    <string name="name">Name</string>
+    <string name="save">Save</string>
+    <string name="edit_truck">Edit truck</string>
 </resources>

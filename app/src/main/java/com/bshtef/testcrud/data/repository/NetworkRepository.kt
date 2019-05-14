@@ -12,4 +12,6 @@ class NetworkRepository(private val apiService: ApiService) {
 
     fun createTruck(truck: Truck): Single<Truck> = apiService.addTruck(truck)
 
+    fun editTruck(id: String, truck: Truck): Single<Truck> = apiService.editTruck(id, truck)
+
 }

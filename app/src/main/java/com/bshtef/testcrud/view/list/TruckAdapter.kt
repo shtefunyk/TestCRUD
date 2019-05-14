@@ -31,21 +31,15 @@ class TruckAdapter(private val listener: TruckClickListener) :
 
     class ItemViewHolder(itemView: View, private val listener: TruckClickListener) : RecyclerView.ViewHolder(itemView) {
 
-        private val name: TextView = itemView.findViewById(R.id.name)
-        private val price: TextView = itemView.findViewById(R.id.price)
-        private val comment: TextView = itemView.findViewById(R.id.comment)
-        private val textId: TextView = itemView.findViewById(R.id.id)
-
-
         @SuppressLint("SetTextI18n")
         fun bind(item: TruckSimpleView) = with(itemView) {
 
             name.text = item.name
-            price.text = item.price.toString()
+            price.text = item.price
             comment.text = item.comment
             textId.text = "#${item.id}"
 
-            setOnClickListener {
+            mainLayout.setOnClickListener {
                 listener.onClick(item)
             }
 

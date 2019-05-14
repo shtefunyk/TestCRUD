@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".view.detail.DetailActivity">
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/nameLayout"
+            style="@style/TextInputLayoutOutlined"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_m"
+            android:layout_marginEnd="@dimen/margin_m"
+            android:layout_marginTop="@dimen/margin_h"
+            android:hint="@string/name"
+            app:errorEnabled="true"
+            android:textColorHint="?android:textColorSecondary">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:nextFocusDown="@id/price"
+                android:textAppearance="@style/Subhead"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/priceLayout"
+            style="@style/TextInputLayoutOutlined"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_m"
+            android:layout_marginEnd="@dimen/margin_m"
+            android:hint="@string/price"
+            app:errorEnabled="true"
+            android:textColorHint="?android:textColorSecondary">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:inputType="numberDecimal"
+                android:maxLength="15"
+                android:nextFocusDown="@id/comment"
+                android:textAppearance="@style/Subhead"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/commentLayout"
+            style="@style/TextInputLayoutOutlined"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_m"
+            android:layout_marginEnd="@dimen/margin_m"
+            android:hint="@string/comment"
+            app:errorEnabled="true"
+            android:textColorHint="?android:textColorSecondary">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/comment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textAppearance="@style/Subhead"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonDone"
+            android:text="@string/save"
+            android:textColor="@color/white"
+            android:enabled="false"
+            android:layout_marginStart="@dimen/margin_m"
+            android:layout_marginEnd="@dimen/margin_m"
+            android:background="@drawable/button_bg"/>
+
+    <ProgressBar
+            android:id="@+id/progress"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"/>
+
+</LinearLayout>

@@ -17,7 +17,5 @@ object ApiClient {
                 .build()
 
             return retrofit.create(ApiService::class.java)
-
         }
-
 }

@@ -13,7 +13,7 @@ interface ApiService {
     fun addTruck(@Body truck: Truck): Single<Truck>
 
     @PATCH("truck/{id}")
-    fun editTruck(@Path("id") id: String, @FieldMap fields: Map<String, String>): Single<Truck>
+    fun editTruck(@Path("id") id: String, @Body truck: Truck): Single<Truck>
 
     @DELETE("truck/{id}")
     fun deleteTruck(@Path("id") id: String): Single<String>

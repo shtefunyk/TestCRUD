@@ -3,6 +3,7 @@ package com.bshtef.testcrud.view.base
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.bshtef.testcrud.data.api.ApiClient
+import com.bshtef.testcrud.data.model.Truck
 import com.bshtef.testcrud.data.repository.NetworkRepository
 import com.bshtef.testcrud.utils.mapList
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -17,7 +18,6 @@ class TrucksViewModel : ViewModel() {
     var trucks = MutableLiveData<ArrayList<TruckSimpleView>>()
     var message = MutableLiveData<String>()
 
-
     fun getList() {
         compositeDisposable.add(
             networkRepository.getList()
@@ -26,7 +26,7 @@ class TrucksViewModel : ViewModel() {
                 .mapList(TruckDataToSimpleView()::transform)
                 .subscribe(
                     { list ->
-                        trucks.postValue(ArrayList(list.filterNotNull()))
+                        trucks.postValue(ArrayList(list.filterNotNull().sortedByDescending { it.id.toInt() }))
                     },
                     { throwable ->
                         message.postValue(throwable.message)
@@ -41,7 +41,7 @@ class TrucksViewModel : ViewModel() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                    { msg ->
+                    {
                         trucks.value?.remove(truck)
                         trucks.value = trucks.value
                     },
@@ -52,6 +52,13 @@ class TrucksViewModel : ViewModel() {
         )
     }
 
+    fun addTruckToList(newTruck: TruckSimpleView){
+        trucks.value?.add(0, newTruck)
+        trucks.value = trucks.value
+    }
 
+    fun clear(){
+        compositeDisposable.dispose()
+    }
 
 }

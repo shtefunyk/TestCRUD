@@ -2,6 +2,7 @@ package com.bshtef.testcrud.view.base
 
 import com.bshtef.testcrud.data.model.Truck
 import com.bshtef.testcrud.utils.Mapper
+import com.bshtef.testcrud.utils.validatePrice
 
 class TruckDataToSimpleView : Mapper<Truck, TruckSimpleView?> {
 
@@ -13,7 +14,7 @@ class TruckDataToSimpleView : Mapper<Truck, TruckSimpleView?> {
             TruckSimpleView(
                 id = id,
                 name = nameTruck,
-                price = 0.0,
+                price = validatePrice(price),
                 comment = comment
             )
         }

@@ -14,6 +14,8 @@
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:paddingBottom="@dimen/margin_m"
+                android:clipToPadding="false"
                 android:scrollbars="vertical"/>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
@@ -23,6 +25,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_h"
             android:src="@drawable/ic_add_white_24dp"
-            android:layout_gravity="bottom|end"/>
+            android:layout_gravity="bottom|end" android:id="@+id/fab"/>
 
 </FrameLayout>
