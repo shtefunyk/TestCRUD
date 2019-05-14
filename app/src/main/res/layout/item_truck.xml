@@ -52,7 +52,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_size_l"
                     android:textStyle="normal"
-                    android:textColor="@color/gray"
+                    android:textColor="@color/gray_light"
                     tools:text="#1234567"/>
 
         </LinearLayout>
@@ -75,7 +75,7 @@
                     android:textSize="@dimen/text_size_l"
                     android:textStyle="bold"
                     android:textAllCaps="true"
-                    android:textColor="@color/gray"
+                    android:textColor="@color/gray_light"
                     android:layout_marginEnd="@dimen/margin_h"
                     android:text="@string/price"/>
 
@@ -104,7 +104,7 @@
                     android:textSize="@dimen/text_size_l"
                     android:textStyle="bold"
                     android:textAllCaps="true"
-                    android:textColor="@color/gray"
+                    android:textColor="@color/gray_light"
                     android:layout_marginEnd="@dimen/margin_h"
                     android:text="@string/comment"/>
 
